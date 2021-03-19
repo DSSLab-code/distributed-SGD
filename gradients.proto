@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option go_package = "google.golang.org/grpc/example/gradients";
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.gradients";
+option java_outer_classname = "GradientsProto";
+
+package gradients;
+
+service Gradients {
+    // Sends a dc, dm
+    rpc SendDcDm (DcDmRequest) returns (DcDmReply) {}
+    rpc SendQueryByEpochID(EpochIDRequest) returns (EpochIDReply) {}
+}
+
+message DcDmRequest {
+    string dm = 1;
+    string dc = 2;
+    string epochID = 3;
+}
+
+message DcDmReply {
+    string weights = 1;
+    string bias = 2;
+    string com = 3;
+}
+
+message EpochIDRequest {
+    string epochID = 1;
+}
+
+message EpochIDReply {
+    string message = 1;
+}
